@@ -1,0 +1,31 @@
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX eplan:<http://www.owl-ontologies.com/Ontology1370788248.owl#>
+PREFIX vcdm:<http://www.owl-ontologies.com/Ontology1373032300.owl#>
+PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT { 
+            ?eplan_s a eplan:EPLAN_Signal . 
+            ?eplan_s eplan:signalNumber ?concat_snum .
+            ?eplan_s eplan:functionText ?lntext .
+            ?eplan_s eplan:plcAddress ?concat_plc . 
+			?eplan_s rdfs:label ?label .
+}  
+WHERE
+{
+        ?vcdm_s a vcdm:Signal ;
+         vcdm:kks0 ?kks0 ;  
+         vcdm:kks1 ?kks1 ;  
+         vcdm:kks2 ?kks2 ;  
+         vcdm:kks3 ?kks3 ;  
+         vcdm:longText ?lntext ; 
+         vcdm:componentNumber ?comNum ;  
+         vcdm:cpuNumber ?cpu ;  
+         vcdm:rackID ?rackID ; 
+         rdfs:label ?label .		 
+		 
+		 ?concat_plc <http://jena.hpl.hp.com/ARQ/property#concat> (?comNum "." ?cpu "." ?rackID ) .
+		 ?concat_snum <http://jena.hpl.hp.com/ARQ/property#concat> (?kks0 "." ?kks1 "." ?kks2 "." ?kks3) .
+			
+	  	 BIND (URI(CONCAT("http://www.owl-ontologies.com/Ontology1370788248.owl#EPLAN_Signal_", ?label)) AS ?eplan_s)
+}
+

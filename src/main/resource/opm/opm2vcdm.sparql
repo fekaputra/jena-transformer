@@ -1,0 +1,32 @@
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX opm:<http://www.semanticweb.org/ontologies/2011/10/Ontology1322640114011.owl#>
+PREFIX vcdm:<http://www.owl-ontologies.com/Ontology1373032300.owl#>
+PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT { ?vcdm_s a vcdm:Signal ;
+         vcdm:kks0 ?grp ;  
+         vcdm:kks1 ?sys ;  
+         vcdm:kks2 ?eqp ;  
+         vcdm:kks3 ?sig ;  
+         vcdm:longText ?lntext ; 
+         vcdm:componentNumber ?komp ;  
+         vcdm:cpuNumber ?bse ;  
+         vcdm:rackID ?sse  ;
+		 rdfs:label ?label 
+}  
+WHERE
+{
+            ?opm_s a opm:OPM_Signal .
+            ?opm_s opm:GRP ?grp .
+            ?opm_s opm:SYS ?sys .
+            ?opm_s opm:EQP ?eqp .
+            ?opm_s opm:SIG ?sig .
+            ?opm_s opm:Longtext ?lntext . 
+            ?opm_s opm:Komp ?komp .
+            ?opm_s opm:BSE ?bse .
+            ?opm_s opm:SSE ?sse .
+			?opm_s rdfs:label ?label .
+			
+			BIND (URI(CONCAT("http://www.owl-ontologies.com/Ontology1373032300.owl#Signal_", ?label)) AS ?vcdm_s)
+}
+
