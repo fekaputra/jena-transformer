@@ -21,7 +21,7 @@
       <configuration>
         <archive>
           <manifest>
-            <mainClass>at.ac.tuwien.jenatransformer.JenaTransformer</mainClass>
+            <mainClass>at.ac.tuwien.jenatransformer.Transformer</mainClass>
           </manifest>
         </archive>
         <descriptorRefs>

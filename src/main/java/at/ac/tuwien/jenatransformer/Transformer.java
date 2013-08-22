@@ -126,7 +126,7 @@ public class Transformer {
 		OntModel input = TransformerHelper.readOwl(fileURI);
 		subModel.addSubModel(input);
 		Model model = constructQuery(entry.getCheckInQuery());
-		vcdm.rebind();
+		vcdm.add(model);
 		
 		return model;
 	}
